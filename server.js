@@ -3,6 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const questions = require('./data/questions.json');
 const { gradeQuizSubmission, scoreContestSubmission } = require('./lib/grader');
+const { DiagnosticEngine } = require('./lib/diagnosticEngine');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -67,6 +68,37 @@ app.post('/api/quiz/submit-timed', (req, res) => {
 
     const report = scoreContestSubmission(questions, submissions, { timeLimitSeconds });
     res.json({ success: true, report });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Diagnostic gap analysis and study recommendation endpoint
+app.post('/api/quiz/diagnostics', (req, res) => {
+  try {
+    const { submissions } = req.body;
+    if (!submissions || !Array.isArray(submissions)) {
+      return res.status(400).json({ error: 'Submissions array is required.' });
+    }
+
+    const gradeReport = gradeQuizSubmission(questions, submissions);
+    // Enrich details with category info
+    const questionCategoryMap = new Map(questions.map(q => [q.id, q.category]));
+    const enrichedDetails = gradeReport.details.map(d => ({
+      ...d,
+      category: questionCategoryMap.get(d.questionId) || 'General'
+    }));
+
+    const diagnosticReport = DiagnosticEngine.analyzeKnowledgeGaps(enrichedDetails);
+    res.json({
+      success: true,
+      gradeSummary: {
+        scorePercentage: gradeReport.scorePercentage,
+        grade: gradeReport.grade,
+        passed: gradeReport.passed
+      },
+      diagnostics: diagnosticReport
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
