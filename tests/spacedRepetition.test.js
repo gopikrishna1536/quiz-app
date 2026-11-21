@@ -1,12 +1,12 @@
-const test = require('node:test');
+const { test, describe } = require('node:test');
 const assert = require('node:assert/strict');
-const SpacedRepetitionFlashcards = require('../lib/spacedRepetitionFlashcards');
+const { scheduleNextReview } = require('../src/utils/spacedRepetitionScheduler');
 
-test('Spaced Repetition Tests', async (t) => {
-  await t.test('should advance review interval on perfect quality score', () => {
-    const res = SpacedRepetitionFlashcards.calculateNextReview(0, 2.5, 5);
-    assert.equal(res.repetitions, 1);
-    assert.equal(res.intervalDays, 1);
-    assert.ok(res.easinessFactor >= 2.5);
+describe('SuperMemo SM-2 Scheduler Tests', () => {
+  test('advances intervals progressively for high quality recall ratings', () => {
+    const rev1 = scheduleNextReview({ repetitions: 0, easeFactor: 2.5, intervalDays: 0, quality: 5 });
+    assert.equal(rev1.intervalDays, 1);
+    const rev2 = scheduleNextReview({ repetitions: 1, easeFactor: rev1.easeFactor, intervalDays: rev1.intervalDays, quality: 5 });
+    assert.equal(rev2.intervalDays, 6);
   });
 });
