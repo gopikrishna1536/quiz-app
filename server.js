@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const questions = require('./data/questions.json');
-const { gradeQuizSubmission } = require('./lib/grader');
+const { gradeQuizSubmission, scoreContestSubmission } = require('./lib/grader');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -51,6 +51,21 @@ app.post('/api/quiz/submit', (req, res) => {
     }
 
     const report = gradeQuizSubmission(questions, submissions);
+    res.json({ success: true, report });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Submit timed contest answers with speed bonuses and streak multipliers
+app.post('/api/quiz/submit-timed', (req, res) => {
+  try {
+    const { submissions, timeLimitSeconds } = req.body;
+    if (!submissions || !Array.isArray(submissions)) {
+      return res.status(400).json({ error: 'Submissions array is required.' });
+    }
+
+    const report = scoreContestSubmission(questions, submissions, { timeLimitSeconds });
     res.json({ success: true, report });
   } catch (err) {
     res.status(500).json({ error: err.message });

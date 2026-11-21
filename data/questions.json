@@ -51,5 +51,63 @@
     "options": ["Amazon S3", "AWS Fargate / ECS", "Amazon RDS", "AWS Route 53"],
     "correctIndex": 1,
     "explanation": "AWS Fargate is a serverless compute engine for containers that works with both Amazon ECS and Amazon EKS."
+  },
+  {
+    "id": 7,
+    "category": "sql",
+    "question": "In relational databases, which ACID property guarantees that committed transactions are never lost even in a crash?",
+    "options": ["Atomicity", "Consistency", "Isolation", "Durability"],
+    "correctIndex": 3,
+    "explanation": "Durability guarantees that once a transaction has been committed, it will remain committed even in the case of a system failure or power loss (typically via Write-Ahead Logging)."
+  },
+  {
+    "id": 8,
+    "category": "sql",
+    "question": "Which type of database index is typically used by default for primary keys in PostgreSQL and MySQL InnoDB?",
+    "options": ["Hash Index", "B-Tree Index", "GIN Index", "Bitmap Index"],
+    "correctIndex": 1,
+    "explanation": "B-Tree (Balanced Tree) indexes maintain sorted key order and provide logarithmic O(log n) lookups, range searches, and sorting."
+  },
+  {
+    "id": 9,
+    "category": "system-design",
+    "question": "In distributed systems, which caching strategy updates both cache and database synchronously before returning success to the client?",
+    "options": ["Write-Through", "Write-Back (Write-Behind)", "Cache-Aside", "Read-Through"],
+    "correctIndex": 0,
+    "explanation": "In Write-Through caching, data is written into the cache and the permanent database simultaneously, ensuring complete consistency at the cost of higher write latency."
+  },
+  {
+    "id": 10,
+    "category": "system-design",
+    "question": "According to the CAP Theorem, which two properties does a partition-tolerant distributed system (like Cassandra) prioritize?",
+    "options": [
+      "Consistency & Availability",
+      "Availability & Partition Tolerance (AP)",
+      "Consistency & Partition Tolerance (CP)",
+      "Atomicity & Durability"
+    ],
+    "correctIndex": 1,
+    "explanation": "When network partitions occur, AP systems prioritize remaining available for read and write requests over immediate cross-node consistency."
+  },
+  {
+    "id": 11,
+    "category": "devops",
+    "question": "In Kubernetes, which object is responsible for ensuring a specified number of identical pod replicas are running at all times?",
+    "options": ["Ingress", "ConfigMap", "ReplicaSet", "PersistentVolume"],
+    "correctIndex": 2,
+    "explanation": "A ReplicaSet's sole purpose is to maintain a stable set of replica Pods running at any given time, automatically replacing failed or terminated pods."
+  },
+  {
+    "id": 12,
+    "category": "devops",
+    "question": "In Docker, what is the best practice for keeping production container images lightweight and secure?",
+    "options": [
+      "Installing full compiler tools in the final image",
+      "Using Multi-Stage Builds and minimal base images (Alpine / Distroless)",
+      "Running all containers as root user",
+      "Staging credentials directly inside Dockerfile RUN layers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Multi-stage builds separate the compile environment from the production runtime, drastically shrinking image size and eliminating build tool attack surfaces."
   }
 ]
