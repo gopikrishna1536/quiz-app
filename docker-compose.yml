@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  quiz-app:
+    build: .
+    container_name: smartquiz_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000

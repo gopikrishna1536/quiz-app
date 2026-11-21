@@ -1,0 +1,55 @@
+[
+  {
+    "id": 1,
+    "category": "python",
+    "question": "What is the time complexity of searching a key in a Python dictionary on average?",
+    "options": ["O(1)", "O(n)", "O(log n)", "O(n log n)"],
+    "correctIndex": 0,
+    "explanation": "Python dictionaries are implemented using hash tables, giving average-case O(1) key lookups."
+  },
+  {
+    "id": 2,
+    "category": "python",
+    "question": "Which Python decorator is used to define an asynchronous route handler in FastAPI?",
+    "options": ["@app.async_route()", "@app.get() with async def", "@app.endpoint()", "@route.async()"],
+    "correctIndex": 1,
+    "explanation": "In FastAPI, route decorators like @app.get() or @app.post() decorated on an 'async def' function create asynchronous endpoints."
+  },
+  {
+    "id": 3,
+    "category": "cs",
+    "question": "Which data structure follows the Last-In, First-Out (LIFO) principle?",
+    "options": ["Queue", "Stack", "Binary Tree", "Linked List"],
+    "correctIndex": 1,
+    "explanation": "A Stack operates on the LIFO principle where the most recently added element is the first to be removed."
+  },
+  {
+    "id": 4,
+    "category": "cs",
+    "question": "Which sorting algorithm has a guaranteed worst-case time complexity of O(n log n)?",
+    "options": ["Quick Sort", "Merge Sort", "Bubble Sort", "Insertion Sort"],
+    "correctIndex": 1,
+    "explanation": "Merge Sort always divides the array in half and merges sorted halves, guaranteeing O(n log n) in best, average, and worst cases."
+  },
+  {
+    "id": 5,
+    "category": "javascript",
+    "question": "What does the JavaScript event loop do when the call stack is empty?",
+    "options": [
+      "Halts the program",
+      "Pushes callbacks from the task queue onto the call stack",
+      "Clears all heap memory",
+      "Restarts the script"
+    ],
+    "correctIndex": 1,
+    "explanation": "The event loop continuously checks if the call stack is empty, and if so, moves pending tasks from the microtask and macrotask queues to the stack."
+  },
+  {
+    "id": 6,
+    "category": "cloud",
+    "question": "Which AWS service is specifically designed for container orchestration without managing servers?",
+    "options": ["Amazon S3", "AWS Fargate / ECS", "Amazon RDS", "AWS Route 53"],
+    "correctIndex": 1,
+    "explanation": "AWS Fargate is a serverless compute engine for containers that works with both Amazon ECS and Amazon EKS."
+  }
+]

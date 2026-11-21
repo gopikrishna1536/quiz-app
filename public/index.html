@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartQuiz — Technical Assessment Platform</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>SmartQuiz</h1>
+      <p class="subtitle">Full-Stack Technical Skills Assessment</p>
+    </header>
+
+    <!-- Quiz Selection View -->
+    <div id="setup-view" class="card">
+      <h2>Select Category</h2>
+      <div id="category-buttons" class="category-grid"></div>
+      <button id="start-btn" class="primary-btn">Start Assessment</button>
+    </div>
+
+    <!-- Active Question View -->
+    <div id="quiz-view" class="card hidden">
+      <div class="quiz-header">
+        <span id="question-tracker">Question 1 of 5</span>
+        <span id="category-badge" class="badge">CS</span>
+      </div>
+      <div class="progress-bar-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      <h3 id="question-text" class="question-text">Loading question...</h3>
+      <div id="options-container" class="options-grid"></div>
+      <div class="quiz-actions">
+        <button id="next-btn" class="primary-btn" disabled>Next Question</button>
+      </div>
+    </div>
+
+    <!-- Results View -->
+    <div id="results-view" class="card hidden">
+      <h2>Assessment Complete!</h2>
+      <div class="score-card">
+        <div id="grade-badge" class="grade-circle">A</div>
+        <p id="score-text" class="score-summary">You scored 80% (4 / 5)</p>
+      </div>
+      <div id="review-container" class="review-list"></div>
+      <button id="restart-btn" class="primary-btn">Take Another Quiz</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
